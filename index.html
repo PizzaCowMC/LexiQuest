@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LexiQuest English Arcade</title>
+    <meta name="description" content="An interactive English learning game platform featuring 20+ original arcade game modes, 500+ collectible characters, browser accounts, achievements, community, and party play." />
+    <meta property="og:title" content="LexiQuest English Arcade" />
+    <meta property="og:description" content="An interactive English learning game platform featuring 20+ original arcade game modes, 500+ collectible characters, browser accounts, achievements, community, and party play." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Top Persistent Navigation Header -->
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <!-- Logo -->
+        <div class="brand-logo" id="brand-logo" title="LexiQuest Home">
+          <span class="brand-icon">⚡</span>
+          <span>LexiQuest</span>
+        </div>
+
+        <!-- Desktop Navigation Tabs -->
+        <nav class="desktop-nav" id="desktop-nav">
+          <button class="nav-link active" data-view="home" id="nav-home">
+            <span>🏠</span> Home
+          </button>
+          <button class="nav-link" data-view="dashboard" id="nav-dashboard">
+            <span>📊</span> Dashboard
+          </button>
+          <button class="nav-link" data-view="games" id="nav-games">
+            <span>🎮</span> Games
+          </button>
+          <button class="nav-link" data-view="shop" id="nav-shop">
+            <span>🛍️</span> Shop
+          </button>
+          <button class="nav-link" data-view="inventory" id="nav-inventory">
+            <span>🎒</span> Collection
+          </button>
+          <button class="nav-link" data-view="achievements" id="nav-achievements">
+            <span>🏆</span> Badges
+          </button>
+          <button class="nav-link" data-view="community" id="nav-community">
+            <span>🌎</span> Community
+          </button>
+          <button class="nav-link" data-view="party" id="nav-party">
+            <span>👥</span> Party
+          </button>
+          <button class="nav-link" data-view="leaderboard" id="nav-leaderboard">
+            <span>🏅</span> Ranks
+          </button>
+          <button class="nav-link" data-view="settings" id="nav-settings">
+            <span>⚙️</span> Settings
+          </button>
+        </nav>
+
+        <!-- Right Header Actions (Audio, Theme, Profile/Login) -->
+        <div class="header-actions">
+          <!-- Audio Toggles -->
+          <button class="btn-icon" id="btn-sound-toggle" title="Toggle Sound FX">
+            <span id="sound-icon">🔊</span>
+          </button>
+          <button class="btn-icon" id="btn-music-toggle" title="Toggle Background Music">
+            <span id="music-icon">🎵</span>
+          </button>
+          <button class="btn-icon" id="btn-theme-toggle" title="Toggle Dark/Light Mode">
+            <span id="theme-icon">🌙</span>
+          </button>
+
+          <!-- User Pill / Profile Summary -->
+          <div class="user-pill" id="header-user-pill" style="display: none;">
+            <div class="user-pill-avatar" id="header-user-avatar">🦊</div>
+            <div class="user-pill-info">
+              <span class="user-pill-name" id="header-user-name">Guest</span>
+              <div class="user-pill-stats">
+                <span class="stat-coin">🪙 <span id="header-user-coins">0</span></span>
+                <span class="stat-xp">⭐ Lv.<span id="header-user-level">1</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Login / Sign Up Trigger -->
+          <button class="btn btn-primary btn-sm" id="btn-open-auth">
+            <span>🔐</span> Login
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Application Content -->
+    <main class="main-content" id="main-content">
+      <!-- ================= 1. HOME VIEW ================= -->
+      <section class="view-section active" id="view-home">
+        <div class="hero-banner">
+          <div class="hero-content">
+            <div class="hero-badge">✨ Original English Arcade Universe</div>
+            <h1 class="hero-title">Master English Through <span>Epic Arcade Games</span></h1>
+            <p class="hero-desc">
+              Level up your grammar, vocabulary, spelling, and reading skills across 20+ distinct game mechanics. Collect 500+ legendary characters and challenge friends!
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-accent btn-lg" id="btn-quick-play">
+                <span>⚡</span> Quick Play (Random Game)
+              </button>
+              <button class="btn btn-primary btn-lg" id="btn-hero-explore-games">
+                <span>🎮</span> Browse 20+ Games
+              </button>
+              <button class="btn btn-secondary btn-lg" id="btn-hero-party">
+                <span>👥</span> Party Lobby
+              </button>
+            </div>
+          </div>
+
+          <!-- Animated Mascot Showcase -->
+          <div class="hero-mascot-showcase">
+            <div class="mascot-orbit-ring">
+              <div class="orbiting-character orbit-1">🐼</div>
+              <div class="orbiting-character orbit-2">🤖</div>
+              <div class="orbiting-character orbit-3">🦉</div>
+              <div class="orbiting-character orbit-4">🦈</div>
+            </div>
+            <div class="center-character" id="hero-center-mascot">🦊</div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Banner -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-icon gold">🪙</div>
+            <div class="stat-card-info">
+              <h4>Bank Balance</h4>
+              <div class="stat-value" id="home-stat-coins">0 Coins</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon blue">⭐</div>
+            <div class="stat-card-info">
+              <h4>Player Level</h4>
+              <div class="stat-value" id="home-stat-level">Level 1</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green">🎯</div>
+            <div class="stat-card-info">
+              <h4>Accuracy</h4>
+              <div class="stat-value" id="home-stat-accuracy">100%</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple">🎒</div>
+            <div class="stat-card-info">
+              <h4>Characters Owned</h4>
+              <div class="stat-value" id="home-stat-chars">1 / 520</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Challenge Banner -->
+        <div class="create-post-card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(16, 185, 129, 0.12)); border-color: rgba(99, 102, 241, 0.3);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="hero-badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">
+                🎁 Daily Login Reward
+              </span>
+              <h3 style="font-size: 1.25rem; font-weight: 800;">Claim Your Daily English Quest Reward</h3>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Receive +150 XP and +100 Coins every 24 hours to fuel your character collection!
+              </p>
+            </div>
+            <button class="btn btn-accent" id="btn-claim-daily">
+              <span>🎁</span> Claim +100 Coins & XP
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Games Spotlight -->
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🔥</span> Trending Arcade Modes</h2>
+            <p>Pick from 20+ original interactive mechanics designed to boost fluency</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btn-home-see-all-games">
+            View All 20+ Games →
+          </button>
+        </div>
+
+        <div class="games-grid" id="home-featured-games">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- ================= 2. DASHBOARD VIEW ================= -->
+      <section class="view-section" id="view-dashboard">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>📊</span> Player Command Center</h2>
+            <p>Track your linguistic mastery, stats, progression, and daily quests</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- Profile Card -->
+          <div class="create-post-card" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+            <div class="character-avatar-wrap" id="dash-avatar-display" style="width: 110px; height: 110px; font-size: 4rem; border-color: var(--accent-gold);">
+              🦊
+            </div>
+            <h3 id="dash-profile-username" style="font-size: 1.4rem; font-weight: 900; margin-bottom: 0.2rem;">Guest Explorer</h3>
+            <span class="game-card-badge" id="dash-equipped-char-title" style="margin-bottom: 1rem;">Equipped: Cyber Fox</span>
+
+            <div style="width: 100%; text-align: left; margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.35rem;">
+                <span style="color: #818cf8;">Level <span id="dash-level-text">1</span></span>
+                <span id="dash-xp-progress-text">0 / 100 XP</span>
+              </div>
+              <div class="progress-bar-wrap" style="height: 10px;">
+                <div class="progress-bar-fill" id="dash-xp-bar" style="width: 25%;"></div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; width: 100%; text-align: center;">
+              <div style="background: var(--bg-card); padding: 0.75rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">TOTAL COINS</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-gold);" id="dash-coins-val">0</div>
+              </div>
+              <div style="background: var(--bg-card); padding: 0.75rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">ACCURACY</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #34d399;" id="dash-accuracy-val">100%</div>
+              </div>
+              <div style="background: var(--bg-card); padding: 0.75rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">GAMES WON</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #60a5fa;" id="dash-games-won-val">0</div>
+              </div>
+              <div style="background: var(--bg-card); padding: 0.75rem; border-radius: var(--radius-sm);">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">CORRECT WORDS</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #c084fc;" id="dash-correct-val">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progression Details & Collection Progress -->
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div class="create-post-card">
+              <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">🎒 Character Collection Index</h3>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.35rem;">
+                <span>Total Characters Unlocked</span>
+                <span id="dash-collection-count-text">1 / 520 (0.2%)</span>
+              </div>
+              <div class="progress-bar-wrap" style="height: 12px; margin-bottom: 1rem;">
+                <div class="progress-bar-fill" id="dash-collection-bar" style="width: 1%; background: linear-gradient(90deg, #ec4899, #f59e0b);"></div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-dash-open-shop">
+                Visit Shop with 500+ Characters →
+              </button>
+            </div>
+
+            <!-- Quick Recommended Modes -->
+            <div class="create-post-card">
+              <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">🎯 Recommended Practice For Today</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
+                <div class="game-card" style="padding: 1rem;" onclick="window.LexiQuest.launchGame('vocab-race')">
+                  <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏁</div>
+                  <h4 style="font-size: 0.95rem; font-weight: 800;">Vocabulary Race</h4>
+                  <p style="font-size: 0.75rem; color: var(--text-muted);">High-speed definition speedway</p>
+                </div>
+                <div class="game-card" style="padding: 1rem;" onclick="window.LexiQuest.launchGame('grammar-battle')">
+                  <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">⚔️</div>
+                  <h4 style="font-size: 0.95rem; font-weight: 800;">Grammar Battle</h4>
+                  <p style="font-size: 0.75rem; color: var(--text-muted);">Defeat boss with syntax spells</p>
+                </div>
+                <div class="game-card" style="padding: 1rem;" onclick="window.LexiQuest.launchGame('word-tower')">
+                  <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏗️</div>
+                  <h4 style="font-size: 0.95rem; font-weight: 800;">Word Tower</h4>
+                  <p style="font-size: 0.75rem; color: var(--text-muted);">Stack linguistic skyscraper</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. GAMES LIBRARY VIEW (20+ MODES) ================= -->
+      <section class="view-section" id="view-games">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🎮</span> The English Arcade (20+ Game Modes)</h2>
+            <p>Every single game features unique mechanics, physics, and learning objectives</p>
+          </div>
+        </div>
+
+        <!-- Filter and Search Bar -->
+        <div class="games-filter-bar">
+          <div class="filter-chips" id="game-category-filters">
+            <button class="chip active" data-category="all">All Modes (20+)</button>
+            <button class="chip" data-category="vocabulary">Vocabulary</button>
+            <button class="chip" data-category="grammar">Grammar</button>
+            <button class="chip" data-category="spelling">Spelling & Words</button>
+            <button class="chip" data-category="reading">Reading & Deductive</button>
+            <button class="chip" data-category="arcade">Fast Arcade</button>
+            <button class="chip" data-category="strategy">Strategy & RPG</button>
+          </div>
+
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="game-search-input" placeholder="Search game modes..." />
+          </div>
+        </div>
+
+        <!-- 20+ Games Grid -->
+        <div class="games-grid" id="full-games-grid">
+          <!-- Rendered by GameEngine -->
+        </div>
+      </section>
+
+      <!-- ================= 4. ACTIVE GAME ARENA ================= -->
+      <section class="view-section" id="view-arena">
+        <div class="game-arena-wrapper">
+          <!-- Top Live Stats Bar -->
+          <div class="arena-top-bar">
+            <div class="arena-title-info">
+              <span class="arena-game-icon" id="arena-current-icon">🎮</span>
+              <div class="arena-game-name" id="arena-current-name">Game Arena</div>
+            </div>
+
+            <div class="arena-stats-live">
+              <div class="arena-stat-badge">
+                <span>⭐ Score:</span>
+                <span id="arena-live-score" style="color: var(--accent-gold);">0</span>
+              </div>
+              <div class="arena-stat-badge">
+                <span>🔥 Streak:</span>
+                <span id="arena-live-streak" style="color: #ec4899;">0</span>
+              </div>
+              <div class="arena-stat-badge timer-badge" id="arena-timer-container">
+                <span>⏱️ Time:</span>
+                <span id="arena-live-timer">60s</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-quit-arena">
+                ✕ Exit
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Interactive Stage Container -->
+          <div class="arena-main-stage" id="arena-main-stage">
+            <!-- Dynamically injected stage for the selected game mode -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. SHOP WITH 500+ CHARACTERS ================= -->
+      <section class="view-section" id="view-shop">
+        <div class="shop-banner">
+          <div>
+            <span class="hero-badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">
+              🛍️ The Collector's Vault
+            </span>
+            <h2 style="font-size: 1.65rem; font-weight: 900;">Over 500+ Collectible Characters</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              From Cyber Foxes to Volcano Dragons. Spend your earned English coins to build your museum!
+            </p>
+          </div>
+
+          <div class="shop-balance-display">
+            <span>🪙</span>
+            <span id="shop-balance-coins">0</span> Coins
+          </div>
+        </div>
+
+        <!-- Shop Filters & Search -->
+        <div class="games-filter-bar">
+          <div class="filter-chips" id="shop-rarity-filters">
+            <button class="chip active" data-rarity="all">All Rarities</button>
+            <button class="chip" data-rarity="common">Common</button>
+            <button class="chip" data-rarity="uncommon">Uncommon</button>
+            <button class="chip" data-rarity="rare">Rare</button>
+            <button class="chip" data-rarity="epic">Epic</button>
+            <button class="chip" data-rarity="legendary">Legendary</button>
+            <button class="chip" data-rarity="mythic">Mythic</button>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <select class="post-select" id="shop-category-select" style="margin-bottom: 0; width: auto;">
+              <option value="all">All Categories</option>
+              <option value="Animals">Animals</option>
+              <option value="Robots">Robots</option>
+              <option value="Wizards">Wizards</option>
+              <option value="Knights">Knights</option>
+              <option value="Space">Space</option>
+              <option value="Pirates & Ninjas">Pirates & Ninjas</option>
+              <option value="Monsters">Monsters</option>
+              <option value="Scientists">Scientists</option>
+              <option value="Foodies">Foodies</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Cyber & Retro">Cyber & Retro</option>
+              <option value="Elements">Elements</option>
+            </select>
+
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="shop-search-input" placeholder="Search 500+ characters..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Characters Grid -->
+        <div class="characters-grid" id="shop-characters-grid">
+          <!-- Rendered programmatically -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-controls" id="shop-pagination">
+          <button class="btn btn-secondary btn-sm" id="btn-shop-prev">← Previous</button>
+          <span style="font-size: 0.9rem; font-weight: 700;" id="shop-page-info">Page 1 of 26</span>
+          <button class="btn btn-secondary btn-sm" id="btn-shop-next">Next →</button>
+        </div>
+      </section>
+
+      <!-- ================= 6. INVENTORY / COLLECTION VIEW ================= -->
+      <section class="view-section" id="view-inventory">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🎒</span> My Character Collection</h2>
+            <p>Select, equip, and inspect your unlocked characters</p>
+          </div>
+          <button class="btn btn-accent btn-sm" id="btn-inv-to-shop">
+            + Buy More in Shop
+          </button>
+        </div>
+
+        <!-- Inventory Filters -->
+        <div class="games-filter-bar">
+          <div class="filter-chips" id="inv-filter-chips">
+            <button class="chip active" data-inv-filter="all">All Owned</button>
+            <button class="chip" data-inv-filter="favorites">⭐ Favorites</button>
+            <button class="chip" data-inv-filter="rare+">Rare & Above</button>
+          </div>
+
+          <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="inv-search-input" placeholder="Search your collection..." />
+          </div>
+        </div>
+
+        <div class="characters-grid" id="inventory-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ================= 7. ACHIEVEMENTS VIEW (30+) ================= -->
+      <section class="view-section" id="view-achievements">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🏆</span> Hall of Achievements (32 Badges)</h2>
+            <p>Earn XP, Coins, and prestige medals by conquering linguistic milestones</p>
+          </div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--accent-gold);" id="achievements-summary-badge">
+            Unlocked: 0 / 32
+          </div>
+        </div>
+
+        <div class="achievements-grid" id="achievements-list-container">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ================= 8. COMMUNITY VIEW (LOCAL FORUM) ================= -->
+      <section class="view-section" id="view-community">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🌎</span> Learners Community Hub</h2>
+            <p>Share grammar tips, post vocabulary questions, celebrate high scores, and chat!</p>
+          </div>
+        </div>
+
+        <div class="community-layout">
+          <!-- Left: Feed & Post Composer -->
+          <div>
+            <!-- Create Post Card -->
+            <div class="create-post-card">
+              <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">✍️ Create Community Post</h3>
+              <input type="text" class="post-input" id="new-post-title" placeholder="Post Title (e.g. My top tip for remembering irregular verbs!)" />
+              <textarea class="post-textarea" id="new-post-content" placeholder="Share study advice, ask questions, or discuss game strategies..."></textarea>
+              <div style="display: flex; gap: 0.75rem; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                <select class="post-select" id="new-post-tag" style="margin-bottom: 0; max-width: 200px;">
+                  <option value="#GrammarTips">#GrammarTips</option>
+                  <option value="#Vocabulary">#Vocabulary</option>
+                  <option value="#StudyAdvice">#StudyAdvice</option>
+                  <option value="#HighScores">#HighScores</option>
+                  <option value="#IdiomFun">#IdiomFun</option>
+                </select>
+                <button class="btn btn-primary" id="btn-submit-post">
+                  <span>🚀</span> Publish Post
+                </button>
+              </div>
+            </div>
+
+            <!-- Posts List Feed -->
+            <div class="posts-feed" id="community-posts-feed">
+              <!-- Rendered from Local Storage -->
+            </div>
+          </div>
+
+          <!-- Right: Community Sidebar & Guidelines -->
+          <div>
+            <div class="create-post-card">
+              <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">📜 Community Guidelines</h4>
+              <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.75rem;">
+                Welcome to LexiQuest Community! All posts and discussions are stored right here in your browser storage. Be kind, supportive, and celebrate English milestones!
+              </p>
+              <div style="font-size: 0.75rem; color: var(--text-dim); background: var(--bg-card); padding: 0.6rem; border-radius: 6px;">
+                💡 <strong>Local Storage Notice:</strong> Posts are saved locally and will remain across sessions.
+              </div>
+            </div>
+
+            <div class="create-post-card" style="margin-top: 1rem;">
+              <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">🏷️ Popular Tags</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;" id="community-tag-filters">
+                <span class="post-tag" style="cursor: pointer;">All</span>
+                <span class="post-tag" style="cursor: pointer;">#GrammarTips</span>
+                <span class="post-tag" style="cursor: pointer;">#Vocabulary</span>
+                <span class="post-tag" style="cursor: pointer;">#HighScores</span>
+                <span class="post-tag" style="cursor: pointer;">#IdiomFun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 9. PARTY / MULTIPLAYER VIEW ================= -->
+      <section class="view-section" id="view-party">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>👥</span> Party Lobby (BroadcastChannel Multiplayer)</h2>
+            <p>Play together in real-time across browser windows/tabs or battle simulated AI classmates!</p>
+          </div>
+        </div>
+
+        <div class="party-hub-container" id="party-hub-selection">
+          <!-- Host Box -->
+          <div class="party-box">
+            <div class="party-box-icon">👑</div>
+            <h3>Host a Game Party</h3>
+            <p>Generate a room code, invite other tabs or windows, and select which English arcade game to conquer!</p>
+            <button class="btn btn-accent btn-lg" id="btn-create-party-room">
+              Create Party Room
+            </button>
+          </div>
+
+          <!-- Join Box -->
+          <div class="party-box">
+            <div class="party-box-icon">🎟️</div>
+            <h3>Join Existing Party</h3>
+            <p>Have a 6-digit room code from a classmate or another tab? Enter it below to join the showdown.</p>
+            <input type="text" class="post-input" id="party-join-input" placeholder="Enter 6-Digit Code..." style="max-width: 240px; text-align: center; font-size: 1.25rem; letter-spacing: 0.1em; font-weight: 800; text-transform: uppercase;" maxlength="6" />
+            <button class="btn btn-primary" id="btn-join-party-room" style="margin-top: 0.5rem;">
+              Join Party Lobby
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Party Room Container (hidden initially) -->
+        <div id="party-room-active" style="display: none; max-width: 800px; margin: 0 auto;">
+          <div class="party-box" style="text-align: left; align-items: stretch;">
+            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <div>
+                <span class="hero-badge">ROOM ACTIVE</span>
+                <h3 style="margin-bottom: 0;">Party Room: <span id="party-room-code-display" style="color: var(--accent-gold); font-family: monospace;">------</span></h3>
+              </div>
+              <button class="btn btn-danger btn-sm" id="btn-leave-party">Leave Room</button>
+            </div>
+
+            <div style="margin-bottom: 1.25rem;">
+              <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">
+                Select Battle Game (Host Only):
+              </label>
+              <select class="post-select" id="party-game-selector">
+                <option value="vocab-race">Vocabulary Race</option>
+                <option value="grammar-battle">Grammar Battle</option>
+                <option value="spelling-sprint">Spelling Sprint</option>
+                <option value="word-duel">Word Duel</option>
+                <option value="synonym-showdown">Synonym Showdown</option>
+                <option value="antonym-attack">Antonym Attack</option>
+                <option value="english-royale">English Royale</option>
+              </select>
+            </div>
+
+            <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">Lobby Contestants (<span id="party-player-count">1</span>):</h4>
+            <div class="party-lobby-players" id="party-lobby-player-list">
+              <!-- Player entries -->
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; justify-content: space-between; margin-top: 1.5rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary" id="btn-add-party-bot">
+                🤖 Add AI Classmate
+              </button>
+              <button class="btn btn-accent btn-lg" id="btn-start-party-game">
+                🚀 Start Party Game!
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 10. LEADERBOARD VIEW ================= -->
+      <section class="view-section" id="view-leaderboard">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🏅</span> Local Legends Leaderboard</h2>
+            <p>Compete against local browser profiles and ranked arcade high scores</p>
+          </div>
+        </div>
+
+        <div class="create-post-card">
+          <div class="filter-chips" id="leaderboard-tab-filters" style="margin-bottom: 1.25rem;">
+            <button class="chip active" data-board="xp">Top XP & Levels</button>
+            <button class="chip" data-board="coins">Most Wealthy (Coins)</button>
+            <button class="chip" data-board="wins">Most Games Won</button>
+            <button class="chip" data-board="accuracy">Highest Accuracy</button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem;" id="leaderboard-table">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border-color); color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">
+                  <th style="padding: 0.75rem 0.5rem;">Rank</th>
+                  <th style="padding: 0.75rem 1rem;">Scholar</th>
+                  <th style="padding: 0.75rem 1rem;">Level</th>
+                  <th style="padding: 0.75rem 1rem;">Coins</th>
+                  <th style="padding: 0.75rem 1rem;">Win Rate</th>
+                  <th style="padding: 0.75rem 1rem; text-align: right;">Total Score</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-tbody">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 11. SETTINGS & SAVE/EXPORT VIEW ================= -->
+      <section class="view-section" id="view-settings">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>⚙️</span> Game Settings & Data Storage</h2>
+            <p>Manage audio, visuals, save backup JSON files, and system preferences</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <!-- Audio & Visuals -->
+          <div class="create-post-card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem;">🔊 Audio & Visuals</h3>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <div style="font-weight: 700;">Sound Effects (SFX)</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Web Audio synthesizer chimes & buzzes</div>
+              </div>
+              <input type="checkbox" id="setting-sfx-toggle" checked style="width: 20px; height: 20px; cursor: pointer;" />
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <div style="font-weight: 700;">Background Music</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Procedural ambient synthesizer melody</div>
+              </div>
+              <input type="checkbox" id="setting-music-toggle" style="width: 20px; height: 20px; cursor: pointer;" />
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <div style="font-weight: 700;">Theme Appearance</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Arcade Dark / Crisp Light Mode</div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-settings-theme">
+                Toggle Theme
+              </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 700;">Animations & Confetti</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Smooth particle & victory celebrations</div>
+              </div>
+              <input type="checkbox" id="setting-anim-toggle" checked style="width: 20px; height: 20px; cursor: pointer;" />
+            </div>
+          </div>
+
+          <!-- Save System & Import/Export -->
+          <div class="create-post-card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem;">💾 Save System (Import / Export)</h3>
+            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+              All accounts, unlocked characters, coins, and achievements are stored in your browser. You can export a JSON backup file to move to another device!
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <button class="btn btn-primary" id="btn-export-save">
+                <span>📦</span> Export Save (Download JSON)
+              </button>
+
+              <label class="btn btn-secondary" style="cursor: pointer; text-align: center;">
+                <span>📂</span> Import Save (Select JSON)
+                <input type="file" id="input-import-save" accept=".json" style="display: none;" />
+              </label>
+
+              <hr style="border-color: var(--border-color); margin: 0.5rem 0;" />
+
+              <button class="btn btn-danger btn-sm" id="btn-reset-data">
+                ⚠️ Reset All Local Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <div class="mobile-bottom-nav" id="mobile-nav">
+      <button class="mobile-nav-btn active" data-view="home">
+        <span>🏠</span>
+        <span>Home</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="games">
+        <span>🎮</span>
+        <span>Games</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="shop">
+        <span>🛍️</span>
+        <span>Shop</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="inventory">
+        <span>🎒</span>
+        <span>Vault</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="community">
+        <span>🌎</span>
+        <span>Social</span>
+      </button>
+      <button class="mobile-nav-btn" data-view="party">
+        <span>👥</span>
+        <span>Party</span>
+      </button>
+    </div>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- 1. Authentication Modal (Browser Account System) -->
+    <div class="modal-overlay" id="modal-auth">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title" id="auth-modal-title">🔐 Scholar Account</h3>
+          <button class="modal-close-btn" id="btn-close-auth">✕</button>
+        </div>
+
+        <div style="font-size: 0.75rem; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); padding: 0.6rem; border-radius: 6px; margin-bottom: 1.25rem; color: #a5b4fc;">
+          🛡️ <strong>Browser Storage System:</strong> Passwords are protected using Web Crypto SHA-256 hashes and saved directly in your browser.
+        </div>
+
+        <div class="filter-chips" style="margin-bottom: 1.25rem;">
+          <button class="chip active" id="tab-auth-login">Login</button>
+          <button class="chip" id="tab-auth-signup">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="form-login">
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.3rem;">Username</label>
+          <input type="text" class="post-input" id="login-username" required placeholder="Your username..." autocomplete="username" />
+
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.3rem;">Password</label>
+          <input type="password" class="post-input" id="login-password" required placeholder="••••••••" autocomplete="current-password" />
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+            Log In
+          </button>
+        </form>
+
+        <!-- Sign Up Form (hidden by default) -->
+        <form id="form-signup" style="display: none;">
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.3rem;">Choose Username</label>
+          <input type="text" class="post-input" id="signup-username" required placeholder="Min 3 characters..." autocomplete="username" />
+
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.3rem;">Password</label>
+          <input type="password" class="post-input" id="signup-password" required placeholder="Min 4 characters..." autocomplete="new-password" />
+
+          <label style="font-size: 0.82rem; font-weight: 700; display: block; margin-bottom: 0.3rem;">Confirm Password</label>
+          <input type="password" class="post-input" id="signup-password-confirm" required placeholder="Repeat password..." autocomplete="new-password" />
+
+          <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 0.5rem;">
+            Create Scholar Profile
+          </button>
+        </form>
+
+        <div style="margin-top: 1rem; text-align: center;" id="auth-switch-prompt">
+          <span style="font-size: 0.82rem; color: var(--text-muted);">Don't have an account?</span>
+          <button class="btn-outline btn-sm" id="btn-toggle-auth-mode" style="border: none; color: var(--primary); font-weight: 800; cursor: pointer;">
+            Switch to Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Purchase Confirmation Modal -->
+    <div class="modal-overlay" id="modal-purchase">
+      <div class="modal-dialog" style="text-align: center;">
+        <div class="character-avatar-wrap" id="purchase-avatar" style="margin: 0 auto 1rem; width: 100px; height: 100px; font-size: 3.5rem;">
+          🦊
+        </div>
+        <h3 id="purchase-char-name" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.25rem;">Cyber Fox</h3>
+        <span class="game-card-badge" id="purchase-rarity-badge" style="margin-bottom: 0.75rem;">Legendary</span>
+        <p id="purchase-desc" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          A cybernetic creature specializing in syntax and grammar puzzles.
+        </p>
+
+        <div style="background: var(--bg-card); padding: 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-weight: 800; font-size: 1.15rem; color: var(--accent-gold);">
+          Price: 🪙 <span id="purchase-price-tag">500</span> Coins
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: center;">
+          <button class="btn btn-secondary" id="btn-cancel-purchase">Cancel</button>
+          <button class="btn btn-accent" id="btn-confirm-purchase">Confirm Purchase</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Toast Notification Center -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Main Logic Scripts -->
+    <script src="./js/data.js"></script>
+    <script src="./js/engine.js"></script>
+    <script src="./js/games.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

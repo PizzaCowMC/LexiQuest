@@ -1,0 +1,6 @@
+{
+  "name": "LexiQuest English Arcade",
+  "description": "An interactive English learning game platform featuring 20+ original arcade game modes, 500+ collectible characters, browser accounts, achievements, community, and party play.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
