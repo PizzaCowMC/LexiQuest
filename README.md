@@ -1,1 +1,1 @@
-A fun grammar game play on: pizzacowmc.github.io or https://sites.google.com/view/lexiquest-fungames
+A fun grammar game play on: pizzacowmc.github.io/lexiquest or https://sites.google.com/view/lexiquest-fungames
